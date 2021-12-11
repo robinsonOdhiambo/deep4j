@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.deep4j.TrainerIntegrationTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-12-10T19:17:08" hostname="robinsonhm-HP-Laptop-15-dw3xxx" time="0.071">
+  <properties/>
+  <testcase name="fit()" classname="com.deep4j.TrainerIntegrationTest" time="0.071"/>
+  <system-out><![CDATA[batch loss : 6.998382251527684
+batch loss : 5.760040339337097
+batch loss : 5.755802435362092
+batch loss : 5.752179464346964
+batch loss : 5.749045922337406
+batch loss : 5.746308408062687
+batch loss : 5.743895947684765
+batch loss : 5.741753627066105
+batch loss : 5.7398382813465005
+batch loss : 5.738115504753959
+
+Validation loss after 10 epochs is 5.737
+The model validation accuracy is : 1.0
+batch loss : 5.736557531070529
+batch loss : 5.735141702243239
+batch loss : 5.733849342880889
+batch loss : 5.7326649202656705
+batch loss : 5.731575408694321
+batch loss : 5.730569802345468
+batch loss : 5.729638737651848
+batch loss : 5.728774197460799
+batch loss : 5.727969277012231
+batch loss : 5.727217997154014
+
+Validation loss after 20 epochs is 5.727
+The model validation accuracy is : 1.0
+batch loss : 5.726515154020403
+batch loss : 5.725856197121678
+batch loss : 5.72523712976501
+batch loss : 5.724654427170621
+batch loss : 5.724104968716585
+batch loss : 5.7235859815448675
+batch loss : 5.723094993364295
+batch loss : 5.722629792745358
+batch loss : 5.722188395553821
+batch loss : 5.721769016442783
+
+Validation loss after 30 epochs is 5.721
+The model validation accuracy is : 1.0
+batch loss : 5.721370044534755
+batch loss : 5.720990022591879
+batch loss : 5.720627629103725
+batch loss : 5.720281662826351
+batch loss : 5.719951029389696
+batch loss : 5.719634729657294
+batch loss : 5.719331849576278
+batch loss : 5.719041551299627
+batch loss : 5.718763065398209
+batch loss : 5.718495684009578
+
+Validation loss after 40 epochs is 5.718
+The model validation accuracy is : 1.0
+batch loss : 5.718238754794621
+batch loss : 5.7179916755928915
+batch loss : 5.717753889684172
+batch loss : 5.7175248815774795
+batch loss : 5.717304173260139
+batch loss : 5.717091320849433
+batch loss : 5.716885911597127
+batch loss : 5.716687561204312
+batch loss : 5.716495911409603
+batch loss : 5.716310627818813
+
+Validation loss after 50 epochs is 5.716
+The model validation accuracy is : 1.0
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
