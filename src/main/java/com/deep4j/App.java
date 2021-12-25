@@ -4,6 +4,7 @@ import com.deep4j.activations.Sigmoid;
 import com.deep4j.activations.Tanh;
 import com.deep4j.layers.Dense;
 import com.deep4j.losses.MeanSquaredError;
+import com.deep4j.losses.SoftmaxCrossEntropy;
 import com.deep4j.optimizers.SGD;
 import org.ejml.simple.SimpleMatrix;
 
@@ -120,7 +121,7 @@ public class App {
         Network network = new Network(Arrays.asList(
                 new Dense(89, seed, new Tanh()),
                 new Dense(10, seed, new Sigmoid())
-        ), seed, new MeanSquaredError(false));
+        ), seed, new SoftmaxCrossEntropy(1e-9));
         Trainer trainer = new Trainer(new SGD(0.1, network));
         trainInfo.epochs = 50;
         trainInfo.evalEvery = 10;

@@ -13,15 +13,27 @@ public class SoftmaxCrossEntropy extends Loss {
     }
 
     private double clip(double v) {
-        if(v < eps) {
-            return eps;
+        double exp = Math.log(eps) / Math.log(10);
+        double minEps;
+        double maxEps;
+        if(exp > 0) {
+            minEps = Math.pow(10, -exp);
+            maxEps = Math.pow(10, exp);
+        } else {
+            minEps = Math.pow(10, exp);
+            maxEps = Math.pow(10, -exp);
         }
 
-        if(v > (1 - eps)) {
-            return -eps;
+        if(v < minEps) {
+            return minEps;
         }
 
-        return eps;
+
+        if(v > maxEps) {
+            return -maxEps;
+        }
+
+        return v;
     }
 
     private SimpleMatrix softmax() {
@@ -32,14 +44,14 @@ public class SoftmaxCrossEntropy extends Loss {
             ).elementSum();
         }
 
-        return elementApply(prediction, (r,c,v) -> clip(Math.exp(v)/sums[r]));
+        return elementApply(prediction, (r,c,v) -> clip(Math.exp(v) / sums[r]));
     }
 
     @Override
     protected double output() {
         this.softmax = softmax();
         SimpleMatrix left = elementApply(softmax, (r, c, v) -> -1.0 * target.get(r, c) * Math.log(v));
-        SimpleMatrix right = elementApply(softmax, (r, c, v) -> (1.0 - target.get(r, c)) * (1.0 - Math.log(v)));
+        SimpleMatrix right = elementApply(softmax, (r, c, v) -> (1.0 - target.get(r, c)) * (Math.log(1-v)));
         SimpleMatrix smce = left.minus(right);
         return smce.elementSum() / prediction.numRows();
     }
