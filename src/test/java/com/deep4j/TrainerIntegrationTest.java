@@ -17,13 +17,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TrainerIntegrationTest {
     private Trainer trainer;
     private Network net;
-    private SimpleMatrix[] paramLayerOne;
-    private SimpleMatrix[] paramLayerTwo;
 
     @BeforeEach
     void setUp() {
-        paramLayerOne = new SimpleMatrix[2];
-        paramLayerTwo = new SimpleMatrix[2];
+        SimpleMatrix[] paramLayerOne = new SimpleMatrix[2];
+        SimpleMatrix[] paramLayerTwo = new SimpleMatrix[2];
 
         paramLayerOne[0] = new SimpleMatrix(new DMatrixRMaj(
                 new double[]{
@@ -137,7 +135,8 @@ public class TrainerIntegrationTest {
                 dataset(1),
                 dataset(-1),
                 dataset(1),
-                dataset(-1)
+                dataset(-1),
+                (net1, trainInfo) -> {}
         );
         info.epochs = 50;
 

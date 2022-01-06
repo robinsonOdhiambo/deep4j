@@ -1,9 +1,11 @@
-package com.deep4j;
+package com.deep4j.examples;
 
+import com.deep4j.Network;
+import com.deep4j.TrainInfo;
+import com.deep4j.Trainer;
 import com.deep4j.activations.Sigmoid;
 import com.deep4j.activations.Tanh;
 import com.deep4j.layers.Dense;
-import com.deep4j.losses.MeanSquaredError;
 import com.deep4j.losses.SoftmaxCrossEntropy;
 import com.deep4j.optimizers.SGD;
 import org.ejml.simple.SimpleMatrix;
@@ -16,9 +18,9 @@ import java.util.List;
 
 import static com.deep4j.utils.Matrix.elementApply;
 
-public class App {
+public class Mnist {
     private static File getFile(String fileName) {
-        URL url = App.class.getClassLoader().getResource(fileName);
+        URL url = Mnist.class.getClassLoader().getResource(fileName);
         if(url == null) {
             throw new RuntimeException("Unable to load file: " + fileName);
         }
@@ -110,10 +112,11 @@ public class App {
     private static void trainMnist() {
         int seed = 20190119;
         TrainInfo trainInfo = new TrainInfo(
-                readMnist("train-images.idx3-ubyte", 28*28),
+                readMnist("train-images.idx3-ubyte", 28 * 28),
                 readMnist("train-labels.idx1-ubyte", 1),
-                readMnist("t10k-images.idx3-ubyte",  28*28),
-                readMnist("t10k-labels.idx1-ubyte", 1)
+                readMnist("t10k-images.idx3-ubyte", 28 * 28),
+                readMnist("t10k-labels.idx1-ubyte", 1),
+                Mnist::calcAccuracyModel
         );
         normalize(trainInfo);
         trainInfo.targetTrain = encodeLabels(trainInfo.targetTrain);

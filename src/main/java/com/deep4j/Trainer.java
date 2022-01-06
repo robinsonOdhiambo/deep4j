@@ -66,7 +66,7 @@ public class Trainer {
                 if(tInfo.earlyStopping) {
                     if (loss < bestLoss) {
                         System.out.printf("\nValidation loss after %d epochs is %.3f", e + 1, loss);
-                        App.calcAccuracyModel(net, tInfo);
+                        tInfo.accuracyCalculator.calcModelAccuracy(net, tInfo);
                         bestLoss = loss;
                     } else {
                         System.out.println();
