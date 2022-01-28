@@ -7,7 +7,9 @@ import com.deep4j.activations.Linear;
 import com.deep4j.activations.Tanh;
 import com.deep4j.layers.Dense;
 import com.deep4j.losses.SoftmaxCrossEntropy;
+import com.deep4j.optimizers.Optimizer;
 import com.deep4j.optimizers.SGD;
+import com.deep4j.optimizers.SGDMomentum;
 import org.ejml.simple.SimpleMatrix;
 
 import java.io.*;
@@ -109,7 +111,7 @@ public class Mnist {
         System.out.println("\nThe model validation accuracy is : " +  sum / r);
     }
 
-    private static void trainMnist() {
+    private static void trainMnist(boolean momentum) {
         int seed = 20190119;
         TrainInfo trainInfo = new TrainInfo(
                 readMnist("train-images.idx3-ubyte", 28 * 28),
@@ -125,7 +127,14 @@ public class Mnist {
                 new Dense(89, seed, new Tanh()),
                 new Dense(10, seed, new Linear())
         ), seed, new SoftmaxCrossEntropy(1e-9));
-        Trainer trainer = new Trainer(new SGD(0.1, network));
+        Optimizer optimizer;
+        if(momentum) {
+            optimizer = new SGDMomentum(0.1, 0.9, network);
+        } else {
+            optimizer = new SGD(0.1, network);
+        }
+
+        Trainer trainer = new Trainer(optimizer);
         trainInfo.epochs = 50;
         trainInfo.evalEvery = 10;
         trainInfo.seed = seed;
@@ -137,6 +146,6 @@ public class Mnist {
     }
 
     public static void main(String[] args) {
-        trainMnist();
+        trainMnist(true);
     }
 }

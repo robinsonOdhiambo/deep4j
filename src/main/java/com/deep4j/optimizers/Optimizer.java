@@ -27,8 +27,6 @@ public abstract class Optimizer {
                 this.updateRule(params.get(i).get(j), paramGrads.get(i).get(j));
             }
         }
-
-//        System.out.println(params.size());
     }
 
     public Network getNet() {
